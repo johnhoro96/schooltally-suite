@@ -23,7 +23,7 @@ const HeroSection = () => {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
               School Accounting,{" "}
               <span className="text-gradient-gold">Simplified</span> with
               Tally Prime
@@ -53,14 +53,14 @@ const HeroSection = () => {
               </Button>
             </div>
 
-            <div className="mt-10 flex items-center gap-8">
+            <div className="mt-10 flex items-center gap-6 sm:gap-8">
               {[
                 { value: "500+", label: "Schools" },
                 { value: "₹50Cr+", label: "Managed" },
                 { value: "99.9%", label: "Uptime" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-2xl font-display font-bold text-foreground">
+                  <div className="text-xl sm:text-2xl font-display font-bold text-foreground">
                     {stat.value}
                   </div>
                   <div className="text-sm text-muted-foreground font-body">

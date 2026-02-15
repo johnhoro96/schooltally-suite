@@ -87,7 +87,7 @@ const IntegrationSection = () => {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 + i * 0.15 }}
-                    className="flex items-center gap-4 bg-card/5 rounded-xl p-4 border border-primary-foreground/5"
+                    className="flex items-center gap-2 sm:gap-4 bg-card/5 rounded-xl p-3 sm:p-4 border border-primary-foreground/5"
                   >
                     <div className="flex-1 text-sm font-body font-medium text-primary-foreground">
                       {item.from}
