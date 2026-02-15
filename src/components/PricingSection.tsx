@@ -70,7 +70,7 @@ const PricingSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -80,7 +80,7 @@ const PricingSection = () => {
               transition={{ delay: i * 0.1 }}
               className={`rounded-2xl p-8 ${
                 plan.highlighted
-                  ? "gradient-navy text-primary-foreground shadow-premium ring-2 ring-gold/30 scale-105"
+                  ? "gradient-navy text-primary-foreground shadow-premium ring-2 ring-gold/30 sm:scale-105"
                   : "bg-background border border-border"
               }`}
             >

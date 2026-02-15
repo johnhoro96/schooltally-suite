@@ -9,8 +9,8 @@ const Footer = () => {
   return (
     <footer className="bg-foreground py-16">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid md:grid-cols-5 gap-12">
-          <div className="md:col-span-1">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 md:gap-12">
+          <div className="col-span-2 sm:col-span-3 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg gradient-gold flex items-center justify-center">
                 <span className="font-display font-bold text-accent-foreground text-sm">ST</span>
