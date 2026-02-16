@@ -1,9 +1,22 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { ArrowRight, CheckCircle } from "lucide-react";
+
+const demoSchema = z.object({
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
+  schoolName: z.string().trim().min(2, "School name must be at least 2 characters").max(200, "School name is too long"),
+  email: z.string().trim().email("Please enter a valid email address").max(255),
+  phone: z.string().trim().regex(/^\+?[\d\s-]{7,15}$/, "Please enter a valid phone number (7–15 digits)"),
+  students: z.string().optional(),
+});
+
+type DemoFormValues = z.infer<typeof demoSchema>;
 
 interface DemoBookingModalProps {
   open: boolean;
@@ -12,16 +25,13 @@ interface DemoBookingModalProps {
 
 const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    schoolName: "",
-    email: "",
-    phone: "",
-    students: "",
+
+  const form = useForm<DemoFormValues>({
+    resolver: zodResolver(demoSchema),
+    defaultValues: { name: "", schoolName: "", email: "", phone: "", students: "" },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = (_data: DemoFormValues) => {
     setSubmitted(true);
   };
 
@@ -30,7 +40,7 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
     if (!val) {
       setTimeout(() => {
         setSubmitted(false);
-        setForm({ name: "", schoolName: "", email: "", phone: "", students: "" });
+        form.reset();
       }, 300);
     }
   };
@@ -59,37 +69,54 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
                 Fill in your details and our team will schedule a personalized demo for your school.
               </DialogDescription>
             </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4 mt-2">
-              <div className="space-y-1.5">
-                <Label htmlFor="name" className="font-body">Full Name</Label>
-                <Input id="name" required placeholder="John Doe" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="schoolName" className="font-body">School / Institution Name</Label>
-                <Input id="schoolName" required placeholder="Delhi Public School" value={form.schoolName} onChange={(e) => setForm({ ...form, schoolName: e.target.value })} />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="email" className="font-body">Email Address</Label>
-                <Input id="email" type="email" required placeholder="admin@school.edu" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <Label htmlFor="phone" className="font-body">Phone Number</Label>
-                  <Input id="phone" type="tel" required placeholder="+91 98765 43210" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-2">
+                <FormField control={form.control} name="name" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="font-body">Full Name</FormLabel>
+                    <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+                <FormField control={form.control} name="schoolName" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="font-body">School / Institution Name</FormLabel>
+                    <FormControl><Input placeholder="Delhi Public School" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+                <FormField control={form.control} name="email" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="font-body">Email Address</FormLabel>
+                    <FormControl><Input type="email" placeholder="admin@school.edu" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+                <div className="grid grid-cols-2 gap-4">
+                  <FormField control={form.control} name="phone" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-body">Phone Number</FormLabel>
+                      <FormControl><Input type="tel" placeholder="+91 98765 43210" {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+                  <FormField control={form.control} name="students" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-body">No. of Students</FormLabel>
+                      <FormControl><Input type="number" placeholder="500" {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
                 </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="students" className="font-body">No. of Students</Label>
-                  <Input id="students" type="number" placeholder="500" value={form.students} onChange={(e) => setForm({ ...form, students: e.target.value })} />
-                </div>
-              </div>
-              <Button type="submit" className="w-full gradient-gold text-accent-foreground font-body font-semibold shadow-gold hover:opacity-90 text-base mt-2">
-                Request Demo
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <p className="text-xs text-center text-muted-foreground font-body">
-                No credit card required · Free onboarding
-              </p>
-            </form>
+                <Button type="submit" className="w-full gradient-gold text-accent-foreground font-body font-semibold shadow-gold hover:opacity-90 text-base mt-2">
+                  Request Demo
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <p className="text-xs text-center text-muted-foreground font-body">
+                  No credit card required · Free onboarding
+                </p>
+              </form>
+            </Form>
           </>
         )}
       </DialogContent>
