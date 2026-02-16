@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -7,6 +8,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({ onBookDemo }: NavbarProps) => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
@@ -36,7 +38,7 @@ const Navbar = ({ onBookDemo }: NavbarProps) => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="font-body">Login</Button>
+          <Button variant="ghost" size="sm" className="font-body" onClick={() => navigate("/login")}>Login</Button>
           <Button size="sm" className="gradient-gold text-accent-foreground font-body font-semibold shadow-gold hover:opacity-90 transition-opacity" onClick={onBookDemo}>
             Book a Demo
           </Button>
@@ -55,7 +57,7 @@ const Navbar = ({ onBookDemo }: NavbarProps) => {
             </a>
           ))}
           <div className="flex flex-col gap-2 mt-3">
-            <Button variant="ghost" size="sm">Login</Button>
+            <Button variant="ghost" size="sm" onClick={() => { navigate("/login"); setIsOpen(false); }}>Login</Button>
             <Button size="sm" className="gradient-gold text-accent-foreground font-semibold" onClick={() => { onBookDemo(); setIsOpen(false); }}>Book a Demo</Button>
           </div>
         </div>
