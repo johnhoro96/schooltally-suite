@@ -2,7 +2,11 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Navbar = () => {
+interface NavbarProps {
+  onBookDemo: () => void;
+}
+
+const Navbar = ({ onBookDemo }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
@@ -25,21 +29,15 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <a key={link.label} href={link.href} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               {link.label}
             </a>
           ))}
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="font-body">
-            Login
-          </Button>
-          <Button size="sm" className="gradient-gold text-accent-foreground font-body font-semibold shadow-gold hover:opacity-90 transition-opacity">
+          <Button variant="ghost" size="sm" className="font-body">Login</Button>
+          <Button size="sm" className="gradient-gold text-accent-foreground font-body font-semibold shadow-gold hover:opacity-90 transition-opacity" onClick={onBookDemo}>
             Book a Demo
           </Button>
         </div>
@@ -52,18 +50,13 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-card border-b border-border px-4 pb-4">
           {links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="block py-2 text-sm font-medium text-muted-foreground hover:text-foreground"
-              onClick={() => setIsOpen(false)}
-            >
+            <a key={link.label} href={link.href} className="block py-2 text-sm font-medium text-muted-foreground hover:text-foreground" onClick={() => setIsOpen(false)}>
               {link.label}
             </a>
           ))}
           <div className="flex flex-col gap-2 mt-3">
             <Button variant="ghost" size="sm">Login</Button>
-            <Button size="sm" className="gradient-gold text-accent-foreground font-semibold">Book a Demo</Button>
+            <Button size="sm" className="gradient-gold text-accent-foreground font-semibold" onClick={() => { onBookDemo(); setIsOpen(false); }}>Book a Demo</Button>
           </div>
         </div>
       )}
