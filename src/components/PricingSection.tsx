@@ -49,7 +49,11 @@ const plans = [
   },
 ];
 
-const PricingSection = () => {
+interface PricingSectionProps {
+  onBookDemo: () => void;
+}
+
+const PricingSection = ({ onBookDemo }: PricingSectionProps) => {
   return (
     <section id="pricing" className="py-20 md:py-28 bg-card">
       <div className="container mx-auto px-4 md:px-6">
@@ -146,6 +150,7 @@ const PricingSection = () => {
                     ? "gradient-gold text-accent-foreground shadow-gold hover:opacity-90"
                     : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                 }`}
+                onClick={onBookDemo}
               >
                 {plan.price === "Custom" ? "Contact Sales" : "Start Free Trial"}
                 <ArrowRight className="ml-2 h-4 w-4" />
