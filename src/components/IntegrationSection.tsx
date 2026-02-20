@@ -28,10 +28,10 @@ const IntegrationSection = () => {
             <span className="text-sm font-body font-semibold text-gold uppercase tracking-widest">
               Tally Prime Integration
             </span>
-            <h2 className="mt-3 text-3xl md:text-4xl font-display font-bold text-primary-foreground leading-tight">
+            <h2 className="mt-3 text-3xl md:text-4xl font-display font-bold text-white leading-tight">
               Seamless Sync with Tally Prime — No Double Entry
             </h2>
-            <p className="mt-5 text-lg font-body text-primary-foreground/70 leading-relaxed">
+            <p className="mt-5 text-lg font-body text-white/70 leading-relaxed">
               SchoolTally bridges the gap between school management and
               professional accounting. Every transaction flows directly into
               Tally Prime, giving your accountant the tools they already know.
@@ -50,7 +50,7 @@ const IntegrationSection = () => {
                   <div className="mt-0.5 w-6 h-6 rounded-full gradient-gold flex items-center justify-center flex-shrink-0">
                     <Check className="h-3.5 w-3.5 text-accent-foreground" />
                   </div>
-                  <span className="text-primary-foreground/90 font-body">
+                  <span className="text-white/90 font-body">
                     {step}
                   </span>
                 </motion.div>
@@ -73,7 +73,7 @@ const IntegrationSection = () => {
             className="relative"
           >
             {/* Visual representation of sync flow */}
-            <div className="bg-card/10 backdrop-blur-sm border border-primary-foreground/10 rounded-2xl p-8">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
               <div className="space-y-6">
                 {[
                   { from: "Fee Collection", to: "Tally Ledger", status: "Synced" },
@@ -87,13 +87,13 @@ const IntegrationSection = () => {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 + i * 0.15 }}
-                    className="flex items-center gap-2 sm:gap-4 bg-card/5 rounded-xl p-3 sm:p-4 border border-primary-foreground/5"
+                    className="flex items-center gap-2 sm:gap-4 bg-white/5 rounded-xl p-3 sm:p-4 border border-white/5"
                   >
-                    <div className="flex-1 text-sm font-body font-medium text-primary-foreground">
+                    <div className="flex-1 text-sm font-body font-medium text-white">
                       {item.from}
                     </div>
                     <ArrowRight className="h-4 w-4 text-gold flex-shrink-0" />
-                    <div className="flex-1 text-sm font-body font-medium text-primary-foreground">
+                    <div className="flex-1 text-sm font-body font-medium text-white">
                       {item.to}
                     </div>
                     <span className="text-xs font-body font-semibold text-gold bg-gold/10 px-2.5 py-1 rounded-full">

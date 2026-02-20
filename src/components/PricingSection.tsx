@@ -84,13 +84,13 @@ const PricingSection = ({ onBookDemo }: PricingSectionProps) => {
               transition={{ delay: i * 0.1 }}
               className={`rounded-2xl p-8 ${
                 plan.highlighted
-                  ? "gradient-navy text-primary-foreground shadow-premium ring-2 ring-gold/30 sm:scale-105"
+                  ? "gradient-navy text-white shadow-premium ring-2 ring-gold/30 sm:scale-105"
                   : "bg-background border border-border"
               }`}
             >
               <h3
-                className={`font-display font-bold text-xl ${
-                  plan.highlighted ? "text-primary-foreground" : "text-foreground"
+                 className={`font-display font-bold text-xl ${
+                  plan.highlighted ? "text-white" : "text-foreground"
                 }`}
               >
                 {plan.name}
@@ -104,9 +104,9 @@ const PricingSection = ({ onBookDemo }: PricingSectionProps) => {
                   {plan.price}
                 </span>
                 <span
-                  className={`text-sm font-body ${
+                   className={`text-sm font-body ${
                     plan.highlighted
-                      ? "text-primary-foreground/60"
+                      ? "text-white/60"
                       : "text-muted-foreground"
                   }`}
                 >
@@ -114,9 +114,9 @@ const PricingSection = ({ onBookDemo }: PricingSectionProps) => {
                 </span>
               </div>
               <p
-                className={`mt-2 text-sm font-body ${
+                 className={`mt-2 text-sm font-body ${
                   plan.highlighted
-                    ? "text-primary-foreground/70"
+                    ? "text-white/70"
                     : "text-muted-foreground"
                 }`}
               >
@@ -132,9 +132,9 @@ const PricingSection = ({ onBookDemo }: PricingSectionProps) => {
                       }`}
                     />
                     <span
-                      className={`text-sm font-body ${
+                       className={`text-sm font-body ${
                         plan.highlighted
-                          ? "text-primary-foreground/90"
+                          ? "text-white/90"
                           : "text-foreground"
                       }`}
                     >
