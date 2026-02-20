@@ -15,10 +15,10 @@ const CTASection = ({ onBookDemo }: CTASectionProps) => {
 
       <div className="container mx-auto px-4 md:px-6 relative text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-primary-foreground leading-tight">
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-white leading-tight">
             Ready to Modernize Your School's Finances?
           </h2>
-          <p className="mt-5 text-lg font-body text-primary-foreground/70 leading-relaxed">
+          <p className="mt-5 text-lg font-body text-white/70 leading-relaxed">
             Join 500+ schools that trust SchoolTally. Get started with a free 30-day trial and see the Tally integration in action.
           </p>
 
@@ -27,13 +27,13 @@ const CTASection = ({ onBookDemo }: CTASectionProps) => {
               Book a Free Demo
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button variant="outline" size="lg" className="border-primary-foreground/20 text-primary-foreground font-body text-base hover:bg-primary-foreground/5">
+            <Button variant="outline" size="lg" className="border-white/20 text-white font-body text-base hover:bg-white/5">
               <Phone className="mr-2 h-4 w-4" />
               Talk to Sales
             </Button>
           </div>
 
-          <p className="mt-6 text-sm font-body text-primary-foreground/50">
+          <p className="mt-6 text-sm font-body text-white/50">
             No credit card required · Free onboarding · Cancel anytime
           </p>
         </motion.div>
