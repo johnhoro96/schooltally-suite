@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface NavbarProps {
   onBookDemo: () => void;
@@ -38,6 +39,7 @@ const Navbar = ({ onBookDemo }: NavbarProps) => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <Button variant="ghost" size="sm" className="font-body" onClick={() => navigate("/login")}>Login</Button>
           <Button size="sm" className="gradient-gold text-accent-foreground font-body font-semibold shadow-gold hover:opacity-90 transition-opacity" onClick={onBookDemo}>
             Book a Demo
